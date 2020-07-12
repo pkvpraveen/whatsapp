@@ -12,26 +12,29 @@
     </h1>
     <h4>Please enter phone number and chat</h4>
     <div>
-      <label for="country">Country</label>
-      <select id="country" name="country">
-        <option value="91">India</option>
-        <option value="1">USA</option>
-        <option value="1">Canada</option>
-        <option value="45">Denmark</option>
-        <option value="44">UK</option>
-      </select>
-      <div id="error"></div>
-      <label for="number">Phone number</label>
-      <div class="input">
-        <input type="text" id="number" />
-        <a onclick="javascript:paste()">
-          <img src="duplicate.svg" alt="paste" />
-        </a>
-      </div>
-      <button onclick="javascript:redirect()">Chat</button>
+      <form onsubmit="redirect(event);" action="#">
+        <label for="country">Country</label>
+        <select id="country" name="country">
+          <option value="91">India</option>
+          <option value="1">USA</option>
+          <option value="1">Canada</option>
+          <option value="45">Denmark</option>
+          <option value="44">UK</option>
+        </select>
+        <div id="error"></div>
+        <label for="number">Phone number</label>
+        <div class="input">
+          <input type="tel" id="number" />
+          <a onclick="javascript:paste()">
+            <img src="duplicate.svg" alt="paste" />
+          </a>
+        </div>
+        <button type="submit">Chat</button>
+      </form>
     </div>
     <script>
-      function redirect() {
+      function redirect(e) {
+        e.preventDefault();
         var number = document.getElementById("number").value;
         var countryCode = document.getElementById("country").value;
         console.log(countryCode);
