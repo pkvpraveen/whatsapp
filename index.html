@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Without Save</title>
+  </head>
+  <body>
+    <h1>
+      Chat directy in whatsapp without saving the number
+    </h1>
+    <h4>Please enter phone number and chat</h4>
+    <div>
+      <label for="country">Country</label>
+      <select id="country" name="country">
+        <option value="91">India</option>
+        <option value="1">USA</option>
+        <option value="1">Canada</option>
+        <option value="45">Denmark</option>
+        <option value="44">UK</option>
+      </select>
+      <div id="error"></div>
+      <label for="number">Phone number</label>
+      <div class="input">
+        <input type="text" id="number" />
+        <a onclick="javascript:paste()">
+          <img src="duplicate.svg" alt="paste" />
+        </a>
+      </div>
+      <button onclick="javascript:redirect()">Chat</button>
+    </div>
+    <script>
+      function redirect() {
+        var number = document.getElementById("number").value;
+        var countryCode = document.getElementById("country").value;
+        console.log(countryCode);
+        if (isNaN(number) || number.length < 10) {
+          document.getElementById("error").innerHTML = "Enter valid number";
+        } else {
+          window.location =
+            "https://wa.me/" +
+            countryCode +
+            number.substring(number.length - 10);
+        }
+      }
+      async function paste() {
+        const text = await navigator.clipboard.readText();
+        document.getElementById("number").value = text;
+      }
+    </script>
+  </body>
+</html>
